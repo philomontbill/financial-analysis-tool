@@ -2,6 +2,7 @@
 export const m2Slice = (set, get) => ({
   m2: {
     data: [],
+    currentValue: null,
     isLoading: false,
     error: null,
     lastUpdated: null,
@@ -41,6 +42,16 @@ export const m2Slice = (set, get) => ({
       },
     })),
 
+  setM2CurrentValue: (currentValue) =>
+    set((state) => ({
+      m2: {
+        ...state.m2,
+        currentValue,
+        lastUpdated: new Date(),
+        error: null,
+      },
+    })),
+
   setM2Metadata: (metadata) =>
     set((state) => ({
       m2: {
@@ -56,6 +67,7 @@ export const m2Slice = (set, get) => ({
     set((state) => ({
       m2: {
         data: [],
+        currentValue: null,
         isLoading: false,
         error: null,
         lastUpdated: null,

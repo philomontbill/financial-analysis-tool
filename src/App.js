@@ -1,12 +1,13 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import Layout from './components/layout/Layout';
 import LoadingSpinner from './components/common/LoadingSpinner';
 import ErrorMessage from './components/common/ErrorMessage';
 import './styles/globals.css';
 
-// Lazy load components for better performance
-const Dashboard = lazy(() => import('./components/Dashboard'));
+// Temporarily disable lazy loading to debug
+// const Dashboard = lazy(() => import('./components/Dashboard'));
+import Dashboard from './components/Dashboard';
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
@@ -23,15 +24,7 @@ function App() {
       onReset={() => window.location.reload()}
     >
       <Layout>
-        <Suspense 
-          fallback={
-            <div className="min-h-[600px] flex items-center justify-center">
-              <LoadingSpinner size="large" message="Loading dashboard..." />
-            </div>
-          }
-        >
-          <Dashboard />
-        </Suspense>
+        <Dashboard />
       </Layout>
     </ErrorBoundary>
   );
